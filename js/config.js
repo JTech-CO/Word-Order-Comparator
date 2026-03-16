@@ -1,7 +1,7 @@
 /**
  * Word Order Comparison Translator - 설정 상수
  * GitHub Actions 빌드 시 sed 또는 envsubst로 GROK_API_KEY 치환 가능
- * 예: sed -i 's/__GROK_API_KEY__/실제키값/g' js/config.js
+ * 예: sed -i 's/PLACEHOLDER/실제키값/g' js/config.js
  */
 const GROK_API_KEY = "__GROK_API_KEY__";
 const GROK_MODEL = "grok-4-1-fast-reasoning";
