@@ -3,6 +3,7 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -25,9 +26,20 @@ jobs:
 
       - name: Inject API Key
         run: |
-          # index.html, js/, css/ 등 모든 파일에서 플레이스홀더를 치환
-          find . -type f \( -name "*.html" -o -name "*.js" -o -name "*.css" \) \
+          echo "=== 치환 전: 플레이스홀더 확인 ==="
+          grep -rn "__GROK_API_KEY__" . --include="*.js" --include="*.html" || echo "플레이스홀더 없음"
+
+          echo "=== sed 치환 실행 ==="
+          find . -type f \( -name "*.html" -o -name "*.js" \) \
             -exec sed -i 's/__GROK_API_KEY__/${{ secrets.GROK_API_KEY }}/g' {} +
+
+          echo "=== 치환 후: 잔존 여부 확인 ==="
+          if grep -rq "__GROK_API_KEY__" . --include="*.js" --include="*.html"; then
+            echo "::error::치환되지 않은 플레이스홀더가 남아있습니다! GROK_API_KEY 시크릿을 확인하세요."
+            exit 1
+          else
+            echo "모든 플레이스홀더가 정상 치환되었습니다."
+          fi
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
