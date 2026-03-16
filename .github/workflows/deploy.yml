@@ -43,7 +43,7 @@ jobs:
             .replace(/\\n/g, '\\\\n')
             .replace(/\\r/g, '\\\\r');
           let c = fs.readFileSync('js/config.js', 'utf8');
-          c = c.replace('__GROK_API_KEY__', escaped);
+          c = c.replace(/__GROK_API_KEY__/g, escaped);
           fs.writeFileSync('js/config.js', c);
           "
 
