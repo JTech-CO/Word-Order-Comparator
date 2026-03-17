@@ -19,7 +19,7 @@
 
 - **Frontend**: HTML, CSS, Vanilla JavaScript (단일 파일)
 - **Font**: Google Fonts (Noto Sans KR / JP / SC, DM Sans)
-- **AI API**: xAI Grok API (`grok-3-mini-fast-beta`)
+- **AI API**: xAI Grok API (`grok-4-1-fast-reasoning`)
 - **Deployment**: GitHub Pages
 
 ## 3. 설치 및 실행 (Quick Start)
